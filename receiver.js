@@ -164,11 +164,9 @@ mediaManager.onLoad = function (event) {
 
   // window.mediaManager.addEventListener(cast.framework.events.category.PAUSE, mediaManagerPaused);
   // Reset DRM data
-     console.log("onLoad called");
   token = null;
   licenceUri = null;
   if (ssmClient) {
-     console.log("onLoad tearing down");
     ssmClient.teardown();
     ssmClient = null;
   }
@@ -306,41 +304,26 @@ window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
 // });
 
 // Handle disconnections, must teardown an SSM session if one is in progress
-window.castReceiverManager.Disconnected = function (event) {
-  console.log("onSenderDisconnected called");
+window.castReceiverManager.onSenderDisconnected = function (event) {
   if (window.castReceiverManager.getSenders().length == 0) {
-     console.log("onSenderDisconnected inside if");
 
     // ignoring the disconnenting with unknown reason in IOS & Android
     if(event.userAgent.includes("iOS" || "iPhone" || "Android") && event.reason === "unknown"){
-     console.log("onSenderDisconnected returning");
       return;
     }
+
     if (ssmClient) {
-     console.log("onSenderDisconnected tearing down");
       ssmClient.teardown();
       ssmClient = null;
     }
-     console.log("onSenderDisconnected closing window");
     window.close();
   }
 }
 
-// window.castReceiverManager.onShutdown = function () {
-// console.log("onShutdown called");
-   // if (ssmClient) {
-   //   console.log("onShutdown tearing down, ssmClient", ssmClient,", event.reason", event.reason);
-   //    ssmClient.teardown();
-   //    ssmClient = null;
-   //  }   
-// }
-
 // Handle playback stoppage and teardown SSM if there is one in progress
 document.getElementById("vid").onended = function () {
   console.log("Playback ended");
-     console.log("onended called");
   if (ssmClient) {
-     console.log("onended tearing down");
     ssmClient.teardown();
     ssmClient = null;
   }
