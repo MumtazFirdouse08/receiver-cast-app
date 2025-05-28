@@ -307,8 +307,9 @@ window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
 
 // Handle disconnections, must teardown an SSM session if one is in progress
 window.castReceiverManager.onSenderDisconnected = function (event) {
+  console.log("onSenderDisconnected called, window.castReceiverManager.getSenders().length", window.castReceiverManager.getSenders().length);
   if (window.castReceiverManager.getSenders().length == 0) {
-     console.log("onSenderDisconnected called, ssmClient", ssmClient,", event.reason", event.reason);
+     console.log("onSenderDisconnected inside if, ssmClient", ssmClient,", event.reason", event.reason);
 
     // ignoring the disconnenting with unknown reason in IOS & Android
     if(event.userAgent.includes("iOS" || "iPhone" || "Android") && event.reason === "unknown"){
