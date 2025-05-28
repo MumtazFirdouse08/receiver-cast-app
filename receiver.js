@@ -319,9 +319,6 @@ console.log("onSenderDisconnected");
     window.close();
   }
 }
-window.castReceiverManager.onStopApplication = function () {
-console.log("onStopApplication called ssmClient",ssmClient);
-}
 
 window.castReceiverManager.onShutdown = function () {
 console.log("onShutDown called ssmClient",ssmClient);
