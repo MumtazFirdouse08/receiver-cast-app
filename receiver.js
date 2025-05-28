@@ -326,14 +326,14 @@ window.castReceiverManager.Disconnected = function (event) {
   }
 }
 
-window.castReceiverManager.onShutdown = function () {
-console.log("onShutdown called");
+// window.castReceiverManager.onShutdown = function () {
+// console.log("onShutdown called");
    // if (ssmClient) {
    //   console.log("onShutdown tearing down, ssmClient", ssmClient,", event.reason", event.reason);
    //    ssmClient.teardown();
    //    ssmClient = null;
    //  }   
-}
+// }
 
 // Handle playback stoppage and teardown SSM if there is one in progress
 document.getElementById("vid").onended = function () {
