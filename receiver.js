@@ -394,6 +394,7 @@ class SsmClient {
    * This needs to be called whenever a playback session is stopped on the cast device.
    */
   teardown() {
+    console.log("teardown called");
     if (this.sessionToken == null) {
       console.warn("Attempted to teardown with no existing session")
       return;
