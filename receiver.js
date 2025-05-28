@@ -314,7 +314,8 @@ window.castReceiverManager.onSenderDisconnected = function (event) {
     }
 
     if (ssmClient) {
-      ssmClient.teardown();
+  console.log(" >>>>> onSenderDisconnected teardown ")
+      vssmClient.teardown();
       ssmClient = null;
     }
     window.close();
@@ -322,6 +323,11 @@ window.castReceiverManager.onSenderDisconnected = function (event) {
 }
 window.castReceiverManager.onShutDown = function () {
   console.log(" >>>>> onShutDown called ")
+  if (ssmClient) {
+  console.log(" >>>>> onShutDown teardown ")
+      ssmClient.teardown();
+      ssmClient = null;
+    }
 }
   
 // Handle playback stoppage and teardown SSM if there is one in progress
