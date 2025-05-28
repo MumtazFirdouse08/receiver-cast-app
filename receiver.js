@@ -325,6 +325,11 @@ window.castReceiverManager.onSenderDisconnected = function (event) {
   }
 }
 
+window.castReceiverManager.onStopApplication = function () {
+console.log("onStopApplication called, ssmClient", ssmClient);
+      
+}
+
 // Handle playback stoppage and teardown SSM if there is one in progress
 document.getElementById("vid").onended = function () {
   console.log("Playback ended");
