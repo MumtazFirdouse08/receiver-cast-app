@@ -413,9 +413,13 @@ class SsmClient {
         }
       }
     };
+    console.log("teardown calling open");
     xhttp.open("POST", endpoint, false);
+    console.log("teardown called open and calling setRequestHeader");
     xhttp.setRequestHeader("nv-authorizations", this.sessionToken)
+    console.log("teardown called setRequestHeader calling send");
     xhttp.send();
+    console.log("teardown called send");
   }
 
   /**
