@@ -404,6 +404,7 @@ class SsmClient {
 
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
+     console.log("teardown onreadystatechange this.readyState",this.readyState,"this.status",this.status);
       if (this.readyState == 4) {
         if (this.status == 200) {
           console.error("SSM teardown successful");
