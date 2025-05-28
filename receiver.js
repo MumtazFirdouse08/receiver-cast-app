@@ -293,7 +293,7 @@ mediaManager.onLoad = function (event) {
 window.player = null;
 console.log('Application is ready, starting system');
 
-window.cast = cast.receiver.Cast.getInstance();
+window.cast = cast.receiver.CastReceiverManager.getInstance();
 
 //  Enable debug logger and show a 'DEBUG MODE' overlay at top left corner
 // const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
