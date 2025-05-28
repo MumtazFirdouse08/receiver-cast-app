@@ -159,6 +159,7 @@ mediaElement.addEventListener("timeupdate", (event) => {
 
 
 mediaManager.onLoad = function (event) {
+  console.log(" >>>>> onLoad called ")
   eventSet = event;
   //castContext.getInstance().setLoggerLevel(cast.framework.LoggerLevel.DEBUG);
 
@@ -167,6 +168,7 @@ mediaManager.onLoad = function (event) {
   token = null;
   licenceUri = null;
   if (ssmClient) {
+  console.log(" >>>>> onLoad teardown ")
     ssmClient.teardown();
     ssmClient = null;
   }
@@ -291,7 +293,7 @@ mediaManager.onLoad = function (event) {
 window.player = null;
 console.log('Application is ready, starting system');
 
-window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+window.cast = cast.receiver.Cast.getInstance();
 
 //  Enable debug logger and show a 'DEBUG MODE' overlay at top left corner
 // const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
