@@ -305,6 +305,7 @@ window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
 
 // Handle disconnections, must teardown an SSM session if one is in progress
 window.castReceiverManager.onSenderDisconnected = function (event) {
+  console.log(" >>>>> onSenderDisconnected called ")
   if (window.castReceiverManager.getSenders().length == 0) {
 
     // ignoring the disconnenting with unknown reason in IOS & Android
@@ -319,7 +320,10 @@ window.castReceiverManager.onSenderDisconnected = function (event) {
     window.close();
   }
 }
-
+window.castReceiverManager.onShutDown = function () {
+  console.log(" >>>>> onShutDown called ")
+}
+  
 // Handle playback stoppage and teardown SSM if there is one in progress
 document.getElementById("vid").onended = function () {
   console.log("Playback ended");
