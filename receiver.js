@@ -320,7 +320,7 @@ console.log("onSenderDisconnected");
   }
 }
 
-window.castReceiverManager.onShutDown = function () {
+window.castReceiverManager.onShutdown = function () {
 console.log("onShutDown");
   if (ssmClient) {
       ssmClient.teardown();
