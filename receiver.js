@@ -159,7 +159,6 @@ mediaElement.addEventListener("timeupdate", (event) => {
 
 
 mediaManager.onLoad = function (event) {
-  console.log(" >>>>> onLoad called ")
   eventSet = event;
   //castContext.getInstance().setLoggerLevel(cast.framework.LoggerLevel.DEBUG);
 
@@ -168,7 +167,6 @@ mediaManager.onLoad = function (event) {
   token = null;
   licenceUri = null;
   if (ssmClient) {
-  console.log(" >>>>> onLoad teardown ")
     ssmClient.teardown();
     ssmClient = null;
   }
@@ -293,7 +291,7 @@ mediaManager.onLoad = function (event) {
 window.player = null;
 console.log('Application is ready, starting system');
 
-window.CastReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+window.castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
 
 //  Enable debug logger and show a 'DEBUG MODE' overlay at top left corner
 // const castDebugLogger = cast.debug.CastDebugLogger.getInstance();
@@ -307,31 +305,29 @@ window.CastReceiverManager = cast.receiver.CastReceiverManager.getInstance();
 
 // Handle disconnections, must teardown an SSM session if one is in progress
 window.castReceiverManager.onSenderDisconnected = function (event) {
-  console.log(" >>>>> onSenderDisconnected called ")
   if (window.castReceiverManager.getSenders().length == 0) {
-
+console.log("onSenderDisconnected");
     // ignoring the disconnenting with unknown reason in IOS & Android
     if(event.userAgent.includes("iOS" || "iPhone" || "Android") && event.reason === "unknown"){
       return;
     }
 
     if (ssmClient) {
-  console.log(" >>>>> onSenderDisconnected teardown ")
-      vssmClient.teardown();
+      ssmClient.teardown();
       ssmClient = null;
     }
     window.close();
   }
 }
+
 window.castReceiverManager.onShutDown = function () {
-  console.log(" >>>>> onShutDown called ")
+console.log("onShutDown");
   if (ssmClient) {
-  console.log(" >>>>> onShutDown teardown ")
       ssmClient.teardown();
       ssmClient = null;
     }
 }
-  
+
 // Handle playback stoppage and teardown SSM if there is one in progress
 document.getElementById("vid").onended = function () {
   console.log("Playback ended");
